@@ -6,6 +6,35 @@ To build a world-class Product Strategy and a robust PRD, you need to aggregate 
 
 ---
 
+## 🗺️ Visualizing the Inputs: The Five Streams of Truth
+
+```mermaid
+mindmap
+  root((High-Quality PRD))
+    Market Intelligence
+      Competitive Moats
+      Macro Trends
+      Regulatory Shifts
+    User Truths
+      Quantitative Data
+      Qualitative Feedback
+      JTBD Framework
+    Organizational Capability
+      Tech Stack Limits
+      Team Bandwidth
+      Core Competencies
+    Strategic Intent
+      CEO Vision / OKRs
+      Moat Building
+      Brand Voice
+    Historical Evidence
+      A/B Test Results
+      Post-Mortems
+      Zombie Feature Audit
+```
+
+---
+
 ## 🌍 1. Market Intelligence (The Terrain)
 *External information about the world outside your company.*
 
@@ -46,6 +75,17 @@ To build a world-class Product Strategy and a robust PRD, you need to aggregate 
 ## 🧠 The Synthesis: How to build the SSOT
 
 The "Single Source of Truth" is created when the PM sits at the intersection of these five streams. 
+
+```mermaid
+graph LR
+    Market(Market) --> SSOT((SSOT PRD))
+    User(User) --> SSOT
+    Org(Capability) --> SSOT
+    Intent(Intent) --> SSOT
+    History(History) --> SSOT
+    
+    style SSOT fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 | Stream | Role of the PM |
 | :--- | :--- |
