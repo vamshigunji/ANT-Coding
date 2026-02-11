@@ -84,7 +84,7 @@ work_roster:
         fail_count: 0
       STORY-7.2:
         title: "Python-Based Orchestrator Core"
-        status: todo
+        status: done
         fail_count: 0
       STORY-7.3:
         title: "Cross-Instance Portability Test"
