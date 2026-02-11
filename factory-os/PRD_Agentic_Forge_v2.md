@@ -19,7 +19,117 @@ We utilize the **"Artifact Chain"** protocol. Every stage must result in a durab
 ## 1. Executive Summary
 The **Agentic Manufacturing Unit (AMU)** is an end-to-end software production system built on OpenClaw. It integrates the **BMAD methodology** for context-rich planning and the **Ant Farm Ralph Loop** for verified, session-isolated execution. The unit minimizes human taxation by automating research, elicitation, and design, while maintaining a resilient, agile assembly line that continues production even when individual tasks fail.
 
-## 2. Human-in-the-Loop (HITL) Protocol
+---
+
+## 2. Visualizing the Factory (Diagrams)
+
+### 2.1 System Architecture Diagram
+This diagram illustrates the OpenClaw OS layer acting as the orchestrator for specialized A2A agents and the durable Artifact Repository.
+
+```mermaid
+graph TD
+    subgraph "OpenClaw OAS (Mission Control)"
+        MC[Orchestrator]
+        Board[Claw Control Kanban]
+        Memory[Workspace Memory]
+    end
+
+    subgraph "The Discovery Lab (A2A Swarm)"
+        Analyst[Analyst/Researcher]
+        PM[PM/Constitution]
+        Arch[Architect Swarm]
+        UI[UI/UX Designer]
+    end
+
+    subgraph "The Production Line (Ralph Loop)"
+        Dev[Lead Developer]
+        Sub[Implementation Sub-agents]
+        Verify[Verifier/Bouncer]
+    end
+
+    subgraph "Artifact Repository (Durable CK)"
+        Brief[Project Brief]
+        PRD[PRD v1.0]
+        TDD[Technical Design]
+        Sprint[sprint-status.yaml]
+    end
+
+    MC -->|Spawn| Analyst
+    Analyst -->|A2A Handshake| Brief
+    Brief -->|Refine| PM
+    PM -->|Codify| PRD
+    PRD -->|Design| Arch
+    Arch -->|Blueprint| TDD
+    TDD -->|Decompose| Sprint
+    Sprint -->|Trigger| Dev
+    Dev -->|Fresh Session| Sub
+    Sub -->|Verify| Verify
+    Verify -->|Report| Board
+```
+
+### 2.2 Use Case Diagram
+Defining the relationship between the human "Strategic Arbiter" and the automated manufacturing processes.
+
+```mermaid
+useCaseDiagram
+    actor "Strategic Arbiter (Human)" as Human
+    package "Agentic Forge" {
+        usecase "Provide Vision Seed" as UC1
+        usecase "Arbitrate Context Conflicts" as UC2
+        usecase "Ratify PRD/TDD" as UC3
+        usecase "Resolve Blocked Stories" as UC4
+        usecase "Autonomous Research" as UC5
+        usecase "Self-Verify Code" as UC6
+    }
+
+    Human --> UC1
+    Human --> UC2
+    Human --> UC3
+    Human --> UC4
+    UC5 ..> UC2 : <<triggers>>
+    UC6 ..> UC4 : <<triggers failure>>
+```
+
+### 2.3 User Journey: The Strategic Arbiter
+Mapping the reduced cognitive load for the human user.
+
+```mermaid
+journey
+    title Human Journey in the Agentic Forge
+    section Discovery
+      Provide Vision Seed: 5: Human
+      Review Conflict Report: 3: Human, Swarm
+      Ratify PRD: 4: Human
+    section Production
+      Monitor Kanban Feed: 2: Mission Control
+      Resolve Circuit Breaker: 3: Human, Verifier
+    section Delivery
+      Review Final Codebase: 5: Human, Verifier
+```
+
+### 2.4 User Flow: From Vision to Story
+```mermaid
+sequenceDiagram
+    participant H as Human (Arbiter)
+    participant A as Analyst/PM (Lab)
+    participant S as Architect (Logic)
+    participant R as Artifact Repo
+
+    H->>A: Submit Vision Seed
+    Note over A: Web Research & Category Analysis
+    A->>A: BMAD Elicitation (Internal)
+    A->>H: Present Conflict Report
+    H->>A: Resolve Conflicts
+    A->>R: Generate PRD v1.0
+    R->>S: Pull PRD
+    S->>R: Generate TDD + UI Specs
+    Note over S: Decomposition Loop
+    S->>R: Codify sprint-status.yaml
+```
+
+---
+
+## 3. Human-in-the-Loop (HITL) Protocol
 Human intervention is restricted to **Strategic Arbitration**.
 
 ### When to Invoke Human Input:
@@ -32,7 +142,7 @@ Human intervention is restricted to **Strategic Arbitration**.
 
 ---
 
-## 3. Stage 1: Autonomous Brainstorming (The Discovery Lab)
+## 4. Stage 1: Autonomous Brainstorming (The Discovery Lab)
 
 ### The Workforce (No-Code Swarm)
 *   **Analyst:** Internet-enabled researcher. Performs competitive analysis and macro-trend mapping.
@@ -43,48 +153,24 @@ Human intervention is restricted to **Strategic Arbitration**.
 *   **UI Designer:** Crafts layouts using **Pencil UI** (generating `.epz` or detailed spec exports).
 *   **UX Expert:** Conducts "Persona Journeys" to stress-test the empathy map.
 
-### The BMAD Elicitation Workflow
-1.  **Vision Seeding:** User provides a raw idea.
-2.  **Autonomous Research:** Analyst and PM crawl the web for similar products and technical blockers.
-3.  **Advanced Elicitation:** Agents execute BMAD's structured question sets across five categories:
-    - *Market Truths* (Analyst lead)
-    - *User Struggles* (UX Expert lead)
-    - *Organizational Capability* (Cloud Architect lead)
-    - *Strategic Intent* (PM lead)
-    - *Historical Evidence* (Solutions Architect lead)
-4.  **Conflict Report:** Instead of asking the user 50 questions, the swarm generates a report of "deadlocks" for the human to arbitrate.
-5.  **Output:** **PRD v1.0** (The Product Constitution).
-
 ---
 
-## 4. Stage 2: Artifact Codification (The Blueprint)
+## 5. Stage 2: Artifact Codification (The Blueprint)
 
 ### The Workflow Example: "Feature → Story"
-- **Step 1:** The Architect reads the PRD and writes the **TDD.md** (database schemas, API contracts).
+- **Step 1:** The Architect Swarm reads the PRD and writes the **TDD.md** (database schemas, API contracts, infrastructure stack).
 - **Step 2:** The **Scrum Master Agent** reads the TDD and initializes the **`sprint-status.yaml`**.
 - **Step 3:** The SM generates individual **Story Files** in `backlog/stories/STORY-XXX.md`.
 
 ### Sprint Status Management (BMAD Inspired)
-The `sprint-status.yaml` acts as the **Global State Machine**:
-```yaml
-project: AMU_MVP
-status: in-progress
-current_sprint: 1
-stories:
-  - id: STORY-101
-    title: "Auth Gateway"
-    status: ready-for-dev
-    failure_count: 0
-    artifacts: [PRD.md, TDD.md, STANDARDS.md]
-```
-The SM Agent monitors this file. When a story hits `ready-for-dev`, it triggers the **Implementation Loop**.
+The `sprint-status.yaml` acts as the **Global State Machine**. It is the heartbeat of the factory, allowing agents to know exactly where they are in the workflow without needing session context.
 
 ---
 
-## 5. Stage 3: Implementation & Verification (The Factory)
+## 6. Stage 3: Implementation & Verification (The Factory)
 
 ### The Developer's Context Package
-A common failure in agentic coding is providing *too little* context. Our Developer Agent receives:
+The Developer Agent receives a complete "Truth Bundle" to prevent drift:
 1.  **The Task:** The specific `STORY-XXX.md` file.
 2.  **The Logic:** The `TDD.md` (How it *must* be built).
 3.  **The Vision:** The `PRD.md` (Why we are building it).
@@ -99,11 +185,10 @@ A common failure in agentic coding is providing *too little* context. Our Develo
     - If `FAIL`: `failure_count` incremented. Developer retries.
     - If `failure_count == 3`: The story is marked `status: blocked`. 
     - **RESILIENCE:** The Orchestrator **immediately moves to the next `ready-for-dev` story**. The factory does not stop.
-    - A human task is created to investigate the blockage.
 
 ---
 
-## 6. Project Outcomes (The Yield)
+## 7. Project Outcomes (The Yield)
 At the end of a project run, the Forge produces:
 1.  **A Hardened Repository:** All code is verified and mapped 1:1 to artifacts.
 2.  **Architectural Integrity:** No code exists that wasn't first defined in the TDD.
@@ -112,6 +197,4 @@ At the end of a project run, the Forge produces:
 
 ---
 **Next Step for User:**
-Review this V2.0 Blueprint. If it meets your standards for "Agentic Manufacturing," say **"Proceed."** 
-
-*(Note: No author was mentioned in the creation of this document per protocol.)*
+Review this V2.1 Blueprint with integrated diagrams. If the visualization matches your intent, say **"Proceed."**
