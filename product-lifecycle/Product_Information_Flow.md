@@ -1,10 +1,10 @@
-# The Product Information Lifecycle: The Flywheel of Execution
+# The Product Information Lifecycle: The Constitutional Flywheel
 
-> **Persona Note:** As someone who has navigated the scaling pains of startups and the bureaucratic mazes of Big Tech (Google, Uber, etc.), I’ve seen that software doesn't fail because of bad code; it fails because of **Information Decay**. This document outlines how to prevent that decay by treating product development as a **Flywheel**, not a one-way pipeline.
+> **Persona Note:** As someone who has navigated the scaling pains of startups and the bureaucratic mazes of Big Tech (Google, Uber, etc.), I’ve seen that software doesn't fail because of bad code; it fails because of **Information Decay**. This document outlines how to prevent that decay by treating the PRD as the **Product Constitution**—a robust, high-fidelity anchor that ensures the CEO, Architect, and Developer remain in perfect alignment.
 
 ## 🗺️ The Information Flywheel (Mermaid)
 
-The following diagram illustrates the recursive nature of high-performance development. Notice how the arrows don't just point down—they loop back to refine the source.
+The following diagram illustrates the recursive nature of high-performance development. The PRD sits at the center as the **Rosetta Stone** for all other artifacts.
 
 ```mermaid
 graph TD
@@ -13,8 +13,8 @@ graph TD
         Vision[CEO Vision] --> Strategy[Product Strategy]
     end
 
-    subgraph "Discovery & Negotiation (The WHAT & HOW)"
-        Strategy --> PRD[PRD: Single Source of Truth]
+    subgraph "The Constitution (The SINGLE SOURCE OF TRUTH)"
+        Strategy --> PRD[The Product Constitution / PRD]
         PRD <--> TDD[Technical Design: Architect]
         PRD <--> TestPlan[Test Strategy: QA]
         PRD <--> Design[UX/UI & Prototypes]
@@ -30,7 +30,7 @@ graph TD
     subgraph "The Feedback Loop (The LEARNING)"
         Stories --> Code[Live Product]
         Code --> Telemetry[Data & User Feedback]
-        Telemetry -->|Insights| PRD
+        Telemetry -->|Amends| PRD
     end
 
     %% Legend
@@ -41,10 +41,10 @@ graph TD
 
 ## 🧠 Deep Dive: The Recursive Loops
 
-In a robust, agile structure, information flows in circles to ensure the "What" is always aligned with the "Possible."
+In a robust, structured environment, information flows in circles to ensure the "What" is always aligned with the "Possible."
 
 ### 1. The Negotiation Loop: TDD & Test Strategy
-The PRD is not a static stone tablet. It is a **living negotiation**.
+The PRD is not a static document; it is a **living constitution**.
 
 *   **TDD as a Reality Check:** When the Architect writes the Technical Design Document, they might find that a requirement is technically impossible or too expensive. They push back, and the **PRD is updated** to match reality.
 *   **Test Strategy as a Verifiability Check:** If QA cannot find a way to test a requirement, the requirement is "fluff." They push back to ensure every line in the PRD is measurable.
@@ -76,4 +76,3 @@ Development shouldn't end when the code is shipped. That is only the halfway poi
 4.  **Tasks:** Implementation details (e.g., "Setup SendGrid API").
 
 **Veteran's Advice:** If your "Stories" aren't mapped back to a "Design Snippet" and a "PRD Requirement," you are building in the dark. Always maintain the thread of traceability.
-
