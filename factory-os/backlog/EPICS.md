@@ -1,9 +1,9 @@
 # Agentic Forge: Master Epics
 
-## EPIC-01: Foundation & Mission Control
-**Objective:** Establish the OAS (Agent Operating System) environment and dashboard connectivity.
+## EPIC-01: Foundation & Sprint Orchestrator
+**Objective:** Establish the OAS (Agent Operating System) environment and the file-based sprint tracking logic.
 - 1.1: Directory Structure & State Schema (`sprint-status.yaml`)
-- 1.2: Claw Control API Integration (Board Provisioning)
+- 1.2: Sprint Watcher Workflow (Autonomous State Tracking)
 
 ## EPIC-02: The Discovery Lab (A2A Swarm)
 **Objective:** Implement the BMAD-based elicitation and internet research capabilities.

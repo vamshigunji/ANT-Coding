@@ -1,12 +1,12 @@
 # Agentic Forge: Detailed Stories
 
-### EPIC-01: Foundation & Mission Control
+### EPIC-01: Foundation & Sprint Orchestrator
 - **STORY-1.1: [OS] Directory & Schema Initialization**
   - Create `factory-os/protocols`, `factory-os/workflows`, and `factory-os/artifacts` directories.
-  - Define the `sprint-status.yaml` schema to track agent IDs and failure counts.
-- **STORY-1.2: [OS] Claw Control Board Provisioning**
-  - Script the automated creation of the 5 Epics on the Kanban board.
-  - Verify bi-directional status updates via the API.
+  - Define the `sprint-status.yaml` schema to track agent IDs, story states, and failure counts.
+- **STORY-1.2: [OS] Sprint Watcher Workflow**
+  - Codify the "Watcher" logic that parses `sprint-status.yaml` to determine the next session trigger.
+  - Implement the "Handover" mechanism between story completion and next story initialization.
 
 ### EPIC-02: The Discovery Lab
 - **STORY-2.1: [LAB] A2A Handshake Codification**

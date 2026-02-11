@@ -17,7 +17,7 @@ We utilize the **"Artifact Chain"** protocol. Every stage must result in a durab
 ---
 
 ## 1. Executive Summary
-The **Agentic Manufacturing Unit (AMU)** is an end-to-end software production system built on OpenClaw. It integrates the **BMAD methodology** for context-rich planning and the **Ant Farm Ralph Loop** for verified, session-isolated execution. The unit minimizes human taxation by automating research, elicitation, and design, while maintaining a resilient, agile assembly line that continues production even when individual tasks fail.
+The **Agentic Manufacturing Unit (AMU)** is an end-to-end software production system built on OpenClaw. It integrates the **BMAD methodology** for context-rich planning and the **Ant Farm Ralph Loop** for verified, session-isolated execution. The unit minimizes human taxation by automating research, elicitation, and design, while maintaining a resilient, agile assembly line tracked via a file-based **Sprint Orchestrator**.
 
 ---
 
@@ -28,9 +28,9 @@ This diagram illustrates the OpenClaw OS layer acting as the orchestrator for sp
 
 ```mermaid
 graph TD
-    subgraph "OpenClaw OAS (Mission Control)"
+    subgraph "OpenClaw OAS (Sprint Orchestrator)"
         MC[Orchestrator]
-        Board[Claw Control Kanban]
+        State[sprint-status.yaml]
         Memory[Workspace Memory]
     end
 
@@ -51,20 +51,22 @@ graph TD
         Brief[Project Brief]
         PRD[PRD v1.0]
         TDD[Technical Design]
-        Sprint[sprint-status.yaml]
+        Stories[Story Markdown Files]
     end
 
-    MC -->|Spawn| Analyst
+    MC -->|Polls State| State
+    State -->|Triggers| Analyst
     Analyst -->|A2A Handshake| Brief
     Brief -->|Refine| PM
     PM -->|Codify| PRD
     PRD -->|Design| Arch
     Arch -->|Blueprint| TDD
-    TDD -->|Decompose| Sprint
-    Sprint -->|Trigger| Dev
+    TDD -->|Decompose| Stories
+    Stories -->|Metadata| State
+    State -->|Trigger Session| Dev
     Dev -->|Fresh Session| Sub
     Sub -->|Verify| Verify
-    Verify -->|Report| Board
+    Verify -->|Update State| State
 ```
 
 ### 2.2 Use Case Diagram
@@ -101,7 +103,7 @@ journey
       Review Conflict Report: 3: Human, Swarm
       Ratify PRD: 4: Human
     section Production
-      Monitor Kanban Feed: 2: Mission Control
+      Monitor Sprint YAML: 2: Sprint Orchestrator
       Resolve Circuit Breaker: 3: Human, Verifier
     section Delivery
       Review Final Codebase: 5: Human, Verifier
