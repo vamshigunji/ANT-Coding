@@ -17,56 +17,68 @@ We utilize the **"Artifact Chain"** protocol. Every stage must result in a durab
 ---
 
 ## 1. Executive Summary
-The **Agentic Manufacturing Unit (AMU)** is an end-to-end software production system built on OpenClaw. It integrates the **BMAD methodology** for context-rich planning and the **Ant Farm Ralph Loop** for verified, session-isolated execution. The unit minimizes human taxation by automating research, elicitation, and design, while maintaining a resilient, agile assembly line tracked via a file-based **Sprint Orchestrator**.
+The **Agentic Manufacturing Unit (AMU)** is a portable, end-to-end software production system. It bundles the **BMAD methodology** (Brainstorming/Elicitation) and the **Ant Farm Ralph Loop** (Isolated Execution) into a single **Project-Level Package**. By installing the "Factory OS" directly into each project's root directory, we ensure total **Interoperability and Portability**—allowing a project to be moved between OpenClaw instances while maintaining its full agentic manufacturing capabilities.
 
 ---
 
-## 2. Visualizing the Factory (Diagrams)
+## 2. Portable Factory Architecture
 
-### 2.1 System Architecture Diagram
-This diagram illustrates the OpenClaw OS layer acting as the orchestrator for specialized A2A agents and the durable Artifact Repository.
+### 2.1 The Bundled Project Structure
+Every project is a self-contained unit containing both the **Workforce Logic** and the **Product Data**.
+
+```text
+[project-root]/
+├── factory-os/             # The "Project OS"
+│   ├── protocols/          # A2A Handshake definitions (Role-specific)
+│   └── workflows/          # The Ralph Loop & Elicitation logic
+├── artifacts/              # The "Truth Source" (PRD, TDD, UI Specs)
+├── backlog/                # The "Task Feed" (Story files)
+├── source/                 # The actual Codebase
+└── sprint-status.yaml      # The central State Machine
+```
+
+### 2.2 System Architecture Diagram
+This diagram illustrates the OpenClaw OS layer acting as the host for a self-contained, project-bundled Forge.
 
 ```mermaid
 graph TD
-    subgraph "OpenClaw OAS (Sprint Orchestrator)"
+    subgraph "Host Runtime (OpenClaw Instance)"
         MC[Orchestrator]
+        Memory[Global Memory]
+    end
+
+    subgraph "Portable Project Container (The Forge Package)"
         State[sprint-status.yaml]
-        Memory[Workspace Memory]
+        
+        subgraph "Bundled OS Layer"
+            Protocols[A2A Protocols]
+            Workflows[Workflow Definitions]
+        end
+
+        subgraph "Context Swarm (BMAD + Ralph)"
+            Analyst[Analyst Persona]
+            PM[PM Persona]
+            Arch[Architect Persona]
+            Dev[Developer Persona]
+        end
+
+        subgraph "Data Layer"
+            Artifacts[Artifacts Repo]
+            Code[Source Code]
+        end
     end
 
-    subgraph "The Discovery Lab (A2A Swarm)"
-        Analyst[Analyst/Researcher]
-        PM[PM/Constitution]
-        Arch[Architect Swarm]
-        UI[UI/UX Designer]
-    end
-
-    subgraph "The Production Line (Ralph Loop)"
-        Dev[Lead Developer]
-        Sub[Implementation Sub-agents]
-        Verify[Verifier/Bouncer]
-    end
-
-    subgraph "Artifact Repository (Durable CK)"
-        Brief[Project Brief]
-        PRD[PRD v1.0]
-        TDD[Technical Design]
-        Stories[Story Markdown Files]
-    end
-
-    MC -->|Polls State| State
-    State -->|Triggers| Analyst
-    Analyst -->|A2A Handshake| Brief
-    Brief -->|Refine| PM
-    PM -->|Codify| PRD
-    PRD -->|Design| Arch
-    Arch -->|Blueprint| TDD
-    TDD -->|Decompose| Stories
-    Stories -->|Metadata| State
-    State -->|Trigger Session| Dev
-    Dev -->|Fresh Session| Sub
-    Sub -->|Verify| Verify
-    Verify -->|Update State| State
+    MC -->|Polls| State
+    State -->|Loads Protocols| Protocols
+    Protocols -->|Initializes| Analyst
+    Protocols -->|Initializes| PM
+    Protocols -->|Initializes| Arch
+    Protocols -->|Initializes| Dev
+    
+    Analyst -->|Handshake| Artifacts
+    PM -->|Handshake| Artifacts
+    Arch -->|Handshake| Artifacts
+    Dev -->|Ralph Loop| Code
 ```
 
 ### 2.2 Use Case Diagram
