@@ -1,9 +1,9 @@
 # Agentic Forge: Global Sprint State
 project: Agentic Forge
-version: 1.0
+version: 2.2
 status: active
-current_phase: foundation
-current_sprint: 1
+current_phase: growth
+current_sprint: 2
 
 work_roster:
   EPIC-01:

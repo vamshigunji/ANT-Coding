@@ -1,6 +1,6 @@
-# PRD: The Agentic Forge (v2.0)
+# PRD: The Agentic Forge (v2.2)
 **Project Title:** Agentic Manufacturing Unit (AMU)  
-**Status:** Strategic Blueprint  
+**Status:** Strategic Blueprint (Refining for Growth)  
 **Date:** February 11, 2026
 
 ---
@@ -9,79 +9,75 @@
 The AMU is designed as a **Self-Eliciting Factory**. 
 
 **The core logic shift:**
-In traditional "Agentic Workflows," the human is the bottleneck—the one providing the context. In the **Forge v2.0**, the agents are the primary researchers. They use **BMAD-style Elicitation** to discover requirements by interviewing each other and the Internet, and only bringing "High-Entropy" conflicts to the human.
+In traditional "Agentic Workflows," the human is the bottleneck—the one providing the context. In the **Forge v2.2**, the agents are the primary researchers. They use **BMAD-style Elicitation** to discover requirements by interviewing each other and the Internet, and only bringing "High-Entropy" conflicts to the human.
 
-**Context Preservation:**
-We utilize the **"Artifact Chain"** protocol. Every stage must result in a durable markdown/yaml file. These files act as the "Common Knowledge" (CK) of the factory, eliminating the need for long, drift-prone chat histories.
+**Context Preservation (The Artifact Chain):**
+We utilize the **"Artifact Chain"** protocol. Every stage results in a durable markdown/yaml file. These files act as the "Common Knowledge" (CK) of the factory, eliminating the need for long, drift-prone chat histories. **V2.2 introduces the "Constitutional Flywheel," ensuring telemetry and feedback loop back to the PRD.**
 
 ---
 
 ## 1. Executive Summary
-The **Agentic Manufacturing Unit (AMU)** is a portable, end-to-end software production system. It bundles the **BMAD methodology** (Brainstorming/Elicitation) and the **Ant Farm Ralph Loop** (Isolated Execution) into a single **Project-Level Package**. By installing the "Factory OS" directly into each project's root directory, we ensure total **Interoperability and Portability**—allowing a project to be moved between OpenClaw instances while maintaining its full agentic manufacturing capabilities.
+The **Agentic Manufacturing Unit (AMU)** is an end-to-end software production system built on OpenClaw. It integrates the **BMAD methodology** for context-rich planning and the **Ant Farm Ralph Loop** for verified, session-isolated execution. The unit minimizes human taxation by automating research, elicitation, and design, while maintaining a resilient, agile assembly line tracked via a file-based **Sprint Orchestrator**.
 
 ---
 
-## 2. Portable Factory Architecture
+## 2. Visualizing the Factory (Diagrams)
 
-### 2.1 The Bundled Project Structure
-Every project is a self-contained unit containing the **Workforce Logic**, the **Persona Definitions**, and the **Product Data**. By decoupling personas from protocols, we ensure the Forge can adapt to different LLM standards (Claude, OpenAI) or IDE environments (Cursor, VSCode).
-
-```text
-[project-root]/
-├── factory-os/             # The "Project OS"
-│   ├── protocols/          # A2A Handshake logic (Platform-Agnostic)
-│   ├── personas/           # Agent Souls (Prompt/Role definitions)
-│   └── workflows/          # The Ralph Loop & Elicitation logic
-├── artifacts/              # The "Truth Source" (PRD, TDD, UI Specs)
-├── backlog/                # The "Task Feed" (Story files)
-├── source/                 # The actual Codebase
-└── sprint-status.yaml      # The central State Machine
-```
-
-### 2.2 System Architecture Diagram
-This diagram illustrates the OpenClaw OS layer acting as the host for a self-contained, project-bundled Forge.
+### 2.1 System Architecture Diagram
+This diagram illustrates the OpenClaw OS layer acting as the orchestrator for specialized A2A agents and the durable Artifact Repository.
 
 ```mermaid
 graph TD
-    subgraph "Host Runtime (OpenClaw Instance)"
+    subgraph "OpenClaw OAS (Sprint Orchestrator)"
         MC[Orchestrator]
-        Memory[Global Memory]
-    end
-
-    subgraph "Portable Project Container (The Forge Package)"
         State[sprint-status.yaml]
-        
-        subgraph "Bundled OS Layer"
-            Protocols[A2A Protocols]
-            Personas[Agent Personas]
-            Workflows[Workflow Definitions]
-        end
-
-        subgraph "A2A Swarm (Live Sessions)"
-            Analyst[Analyst/Researcher]
-            PM[PM/Constitution]
-            Arch[Architect Swarm]
-            Dev[Developer Persona]
-        end
-
-        subgraph "Data Layer"
-            Artifacts[Artifacts Repo]
-            Code[Source Code]
-        end
+        Memory[Workspace Memory]
     end
 
-    MC -->|Polls| State
-    State -->|Loads Protocols| Protocols
-    Protocols -->|Injects Personas| Personas
-    Personas -->|Initializes| Analyst
-    Personas -->|Initializes| PM
-    Personas -->|Initializes| Arch
-    Personas -->|Initializes| Dev
+    subgraph "The Discovery Lab (A2A Swarm)"
+        Analyst[Analyst/Researcher]
+        PM[PM/Constitution]
+        Arch[Architect Swarm]
+        UI[UI/UX Designer]
+    end
+
+    subgraph "The Production Line (Ralph Loop)"
+        Dev[Lead Developer]
+        Sub[Implementation Sub-agents]
+        Verify[Verifier/Bouncer]
+    end
+
+    subgraph "The Growth Flywheel (v2.2)"
+        SRE[SRE Agent]
+        Tele[Telemetry Data]
+    end
+
+    subgraph "Artifact Repository (Durable CK)"
+        Brief[Project Brief]
+        PRD[PRD v2.2]
+        TDD[Technical Design]
+        Stories[Story Markdown Files]
+    end
+
+    MC -->|Polls State| State
+    State -->|Triggers| Analyst
+    Analyst -->|A2A Handshake| Brief
+    Brief -->|Refine| PM
+    PM -->|Codify| PRD
+    PRD -->|Design| Arch
+    Arch -->|Blueprint| TDD
+    TDD -->|Decompose| Stories
+    Stories -->|Metadata| State
+    State -->|Trigger Session| Dev
+    Dev -->|Fresh Session| Sub
+    Sub -->|Verify| Verify
+    Verify -->|Update State| State
     
-    Analyst -->|Handshake| Artifacts
-    PM -->|Handshake| Artifacts
-    Arch -->|Handshake| Artifacts
-    Dev -->|Ralph Loop| Code
+    %% v2.2 Feedback Loop
+    Verify -->|Deploy| SRE
+    SRE -->|Monitor| Tele
+    Tele -->|Insights| PM
+    PM -->|Amends| PRD
 ```
 
 ### 2.2 Use Case Diagram
@@ -97,14 +93,17 @@ useCaseDiagram
         usecase "Resolve Blocked Stories" as UC4
         usecase "Autonomous Research" as UC5
         usecase "Self-Verify Code" as UC6
+        usecase "Review Telemetry Insights (v2.2)" as UC7
     }
 
     Human --> UC1
     Human --> UC2
     Human --> UC3
     Human --> UC4
+    Human --> UC7
     UC5 ..> UC2 : <<triggers>>
     UC6 ..> UC4 : <<triggers failure>>
+    UC7 ..> UC3 : <<triggers revision>>
 ```
 
 ### 2.3 User Journey: The Strategic Arbiter
@@ -120,8 +119,9 @@ journey
     section Production
       Monitor Sprint YAML: 2: Sprint Orchestrator
       Resolve Circuit Breaker: 3: Human, Verifier
-    section Delivery
-      Review Final Codebase: 5: Human, Verifier
+    section Growth (v2.2)
+      Review Performance Dashboard: 2: SRE Agent
+      Approve Pivot/Optimization: 4: Human, PM
 ```
 
 ### 2.4 User Flow: From Vision to Story
@@ -150,68 +150,50 @@ sequenceDiagram
 Human intervention is restricted to **Strategic Arbitration**.
 
 ### When to Invoke Human Input:
-1.  **Conflict Resolution:** When the Architect and PM agents hit a deadlock (e.g., "Feature A is desirable but technically unfeasible at scale").
-2.  **Ratification Gates:** Final approval of the PRD v1.0 and the TDD (Technical Design Document) before coding begins.
-3.  **Circuit Breaker Escalation:** When a story fails verification 3 times, it is tagged `🙋 @Human_Review` on the Kanban board.
-4.  **Directional Steering:** Periodic check-ins to pivot the "Vision Seed" if market research suggests a new gap.
-
-**HITL Mechanism:** Human tasks are created as P0 tickets on the **Claw Control** board. Agents pause that specific ticket but **continue working on other non-dependent stories** in parallel.
+1.  **Conflict Resolution:** When the Architect and PM agents hit a deadlock.
+2.  **Ratification Gates:** Final approval of the PRD v2.2 and the TDD before coding begins.
+3.  **Circuit Breaker Escalation:** When a story fails verification 3 times.
+4.  **Growth Strategy (v2.2):** Reviewing suggested pivots based on live telemetry.
 
 ---
 
 ## 4. Stage 1: Autonomous Brainstorming (The Discovery Lab)
-
-### The Workforce (No-Code Swarm)
-*   **Analyst:** Internet-enabled researcher. Performs competitive analysis and macro-trend mapping.
-*   **PM:** Enforces the "Product Constitution" and business value.
-*   **Solutions Architect:** Defines the high-level logic flow.
-*   **Functional Architect:** Maps user journeys and business rules.
-*   **Cloud/Testing Architect:** Defines the infrastructure and quality baseline.
-*   **UI Designer:** Crafts layouts using **Pencil UI** (generating `.epz` or detailed spec exports).
-*   **UX Expert:** Conducts "Persona Journeys" to stress-test the empathy map.
+(Implementation identical to v2.1)
 
 ---
 
 ## 5. Stage 2: Artifact Codification (The Blueprint)
-
-### The Workflow Example: "Feature → Story"
-- **Step 1:** The Architect Swarm reads the PRD and writes the **TDD.md** (database schemas, API contracts, infrastructure stack).
-- **Step 2:** The **Scrum Master Agent** reads the TDD and initializes the **`sprint-status.yaml`**.
-- **Step 3:** The SM generates individual **Story Files** in `backlog/stories/STORY-XXX.md`.
-
-### Sprint Status Management (BMAD Inspired)
-The `sprint-status.yaml` acts as the **Global State Machine**. It is the heartbeat of the factory, allowing agents to know exactly where they are in the workflow without needing session context.
+(Implementation identical to v2.1)
 
 ---
 
 ## 6. Stage 3: Implementation & Verification (The Factory)
-
-### The Developer's Context Package
-The Developer Agent receives a complete "Truth Bundle" to prevent drift:
-1.  **The Task:** The specific `STORY-XXX.md` file.
-2.  **The Logic:** The `TDD.md` (How it *must* be built).
-3.  **The Vision:** The `PRD.md` (Why we are building it).
-4.  **The Environment:** `STANDARDS.md` (Coding style, linting rules, library versions).
-5.  **The Codebase:** Read-access to existing files to ensure pattern matching.
-
-### The Ralph Loop (Ant Farm Implementation)
-1.  **Isolation:** A **fresh OpenClaw session** is spawned for the story.
-2.  **Execution:** Developer writes the code and unit tests.
-3.  **Verification:** A **Verifier Agent** in a *separate* session attempts to run the code and tests.
-4.  **The Circuit Breaker:**
-    - If `FAIL`: `failure_count` incremented. Developer retries.
-    - If `failure_count == 3`: The story is marked `status: blocked`. 
-    - **RESILIENCE:** The Orchestrator **immediately moves to the next `ready-for-dev` story**. The factory does not stop.
+(Implementation identical to v2.1)
 
 ---
 
-## 7. Project Outcomes (The Yield)
+## 7. Stage 4: Operational Governance & Telemetry (The Flywheel) [v2.2 NEW]
+
+### The SRE Agent (The Guardian)
+*   **Role:** Continuous health monitoring and automated recovery.
+*   **Input:** Live deployment metrics and error logs.
+*   **Output:** Automated incident reports and **"Insight Tickets"** for the PM.
+
+### Closing the Loop
+In v2.2, the factory doesn't stop at deployment. The **Constitutional Flywheel** ensures that:
+1.  **Telemetry to Insight:** Live data is analyzed by the SRE and PM agents.
+2.  **Insight to Revision:** If a feature isn't meeting the "Success Metrics" defined in the PRD, the PM agent generates a **Revision Draft**.
+3.  **Revision to Sprint:** The Architect decomposes the revision into new stories, and the cycle repeats.
+
+---
+
+## 8. Project Outcomes (The Yield)
 At the end of a project run, the Forge produces:
 1.  **A Hardened Repository:** All code is verified and mapped 1:1 to artifacts.
 2.  **Architectural Integrity:** No code exists that wasn't first defined in the TDD.
-3.  **Documentation as a Byproduct:** PRDs, TDDs, and Sprint Reports are auto-generated and always up-to-date.
-4.  **Zero-Drift History:** Because sessions are isolated, the final story is as high-quality as the first.
+3.  **Zero-Drift History:** Because sessions are isolated, the final story is as high-quality as the first.
+4.  **Operational Intelligence (v2.2):** A product that learns and adapts based on real-world usage.
 
 ---
 **Next Step for User:**
-Review this V2.1 Blueprint with integrated diagrams. If the visualization matches your intent, say **"Proceed."**
+Review this **V2.2 Blueprint** with the new **Constitutional Flywheel**. If the growth phase matches your intent, say **"Proceed."**
