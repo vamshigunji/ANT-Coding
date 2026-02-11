@@ -4,6 +4,7 @@
 **Objective:** Establish the OAS (Agent Operating System) environment and the file-based sprint tracking logic.
 - 1.1: Directory Structure & State Schema (`sprint-status.yaml`)
 - 1.2: Sprint Watcher Workflow (Autonomous State Tracking)
+- 1.3: Persona Hub (Decoupled Prompt Library)
 
 ## EPIC-02: The Discovery Lab (A2A Swarm)
 **Objective:** Implement the BMAD-based elicitation and internet research capabilities.

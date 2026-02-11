@@ -7,6 +7,9 @@
 - **STORY-1.2: [OS] Sprint Watcher Workflow**
   - Codify the "Watcher" logic that parses `sprint-status.yaml` to determine the next session trigger.
   - Implement the "Handover" mechanism between story completion and next story initialization.
+- **STORY-1.3: [OS] Persona Hub Initialization**
+  - Create the `factory-os/personas/` directory.
+  - Define the "Persona Schema" (instructions, tone, constraints) to ensure agents can be retargeted for different IDEs/Standards (Claude, Cursor, etc.).
 
 ### EPIC-02: The Discovery Lab
 - **STORY-2.1: [LAB] A2A Handshake Codification**

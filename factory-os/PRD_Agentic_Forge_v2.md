@@ -24,12 +24,13 @@ The **Agentic Manufacturing Unit (AMU)** is a portable, end-to-end software prod
 ## 2. Portable Factory Architecture
 
 ### 2.1 The Bundled Project Structure
-Every project is a self-contained unit containing both the **Workforce Logic** and the **Product Data**.
+Every project is a self-contained unit containing the **Workforce Logic**, the **Persona Definitions**, and the **Product Data**. By decoupling personas from protocols, we ensure the Forge can adapt to different LLM standards (Claude, OpenAI) or IDE environments (Cursor, VSCode).
 
 ```text
 [project-root]/
 ├── factory-os/             # The "Project OS"
-│   ├── protocols/          # A2A Handshake definitions (Role-specific)
+│   ├── protocols/          # A2A Handshake logic (Platform-Agnostic)
+│   ├── personas/           # Agent Souls (Prompt/Role definitions)
 │   └── workflows/          # The Ralph Loop & Elicitation logic
 ├── artifacts/              # The "Truth Source" (PRD, TDD, UI Specs)
 ├── backlog/                # The "Task Feed" (Story files)
@@ -52,13 +53,14 @@ graph TD
         
         subgraph "Bundled OS Layer"
             Protocols[A2A Protocols]
+            Personas[Agent Personas]
             Workflows[Workflow Definitions]
         end
 
-        subgraph "Context Swarm (BMAD + Ralph)"
-            Analyst[Analyst Persona]
-            PM[PM Persona]
-            Arch[Architect Persona]
+        subgraph "A2A Swarm (Live Sessions)"
+            Analyst[Analyst/Researcher]
+            PM[PM/Constitution]
+            Arch[Architect Swarm]
             Dev[Developer Persona]
         end
 
@@ -70,10 +72,11 @@ graph TD
 
     MC -->|Polls| State
     State -->|Loads Protocols| Protocols
-    Protocols -->|Initializes| Analyst
-    Protocols -->|Initializes| PM
-    Protocols -->|Initializes| Arch
-    Protocols -->|Initializes| Dev
+    Protocols -->|Injects Personas| Personas
+    Personas -->|Initializes| Analyst
+    Personas -->|Initializes| PM
+    Personas -->|Initializes| Arch
+    Personas -->|Initializes| Dev
     
     Analyst -->|Handshake| Artifacts
     PM -->|Handshake| Artifacts
