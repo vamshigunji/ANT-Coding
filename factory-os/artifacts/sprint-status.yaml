@@ -51,6 +51,18 @@ work_roster:
         fail_count: 0
   EPIC-04:
     title: "The Production Line"
+    status: done
+    stories:
+      STORY-4.1:
+        title: "Ralph Loop Implementation"
+        status: done
+        fail_count: 0
+      STORY-4.2:
+        title: "Verifier Agent Protocol"
+        status: done
+        fail_count: 0
+  EPIC-05:
+    title: "Resilience & Circuit Breaker"
     status: in-progress
   EPIC-04:
     title: "The Production Line"
