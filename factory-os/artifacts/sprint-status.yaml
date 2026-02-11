@@ -8,7 +8,7 @@ current_sprint: 1
 work_roster:
   EPIC-01:
     title: "Foundation & Sprint Orchestrator"
-    status: in-progress
+    status: done
     stories:
       STORY-1.1:
         title: "Directory & Schema Initialization"
@@ -63,15 +63,21 @@ work_roster:
         fail_count: 0
   EPIC-05:
     title: "Resilience & Circuit Breaker"
-    status: in-progress
-  EPIC-04:
-    title: "The Production Line"
-    status: backlog
-  EPIC-05:
-    title: "Resilience & Circuit Breaker"
-    status: backlog
+    status: done
+    stories:
+      STORY-5.1:
+        title: "Pivot Logic"
+        status: done
+        fail_count: 0
+      STORY-5.2:
+        title: "Arbiter Escalation"
+        status: done
+        fail_count: 0
 
 artifacts_index:
   PRD: "factory-os/artifacts/PRD_Agentic_Forge_v2.md"
   EPICS: "factory-os/backlog/EPICS.md"
   STORIES: "factory-os/backlog/STORIES.md"
+  HANDSHAKE: "factory-os/protocols/handshake_contract.md"
+  RESILIENCE: "factory-os/protocols/resilience_protocol.md"
+  WATCHER: "factory-os/workflows/sprint_watcher.js"
