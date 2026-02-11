@@ -1,6 +1,6 @@
 # Agentic Forge: Global Sprint State
 project: Agentic Forge
-version: 2.3
+version: 2.2
 status: active
 current_phase: growth
 current_sprint: 2
@@ -72,6 +72,23 @@ work_roster:
       STORY-5.2:
         title: "Arbiter Escalation"
         status: done
+        fail_count: 0
+
+  EPIC-07:
+    title: "Interoperability & Decoupling (v2.3)"
+    status: active
+    stories:
+      STORY-7.1:
+        title: "Persona Hub Externalization"
+        status: done
+        fail_count: 0
+      STORY-7.2:
+        title: "Python-Based Orchestrator Core"
+        status: todo
+        fail_count: 0
+      STORY-7.3:
+        title: "Cross-Instance Portability Test"
+        status: todo
         fail_count: 0
 
 artifacts_index:
