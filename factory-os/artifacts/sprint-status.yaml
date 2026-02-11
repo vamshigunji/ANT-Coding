@@ -1,0 +1,44 @@
+# Agentic Forge: Global Sprint State
+project: Agentic Forge
+version: 1.0
+status: active
+current_phase: foundation
+current_sprint: 1
+
+work_roster:
+  EPIC-01:
+    title: "Foundation & Sprint Orchestrator"
+    status: in-progress
+    stories:
+      STORY-1.1:
+        title: "Directory & Schema Initialization"
+        status: done
+        fail_count: 0
+        last_agent: Mission Control
+      STORY-1.2:
+        title: "Sprint Watcher Workflow"
+        status: done
+        fail_count: 0
+        last_agent: Mission Control
+      STORY-1.3:
+        title: "Persona Hub Initialization"
+        status: done
+        fail_count: 0
+        last_agent: Mission Control
+  EPIC-02:
+    title: "The Discovery Lab"
+    status: backlog
+  EPIC-03:
+    title: "The Blueprint Engine"
+    status: backlog
+  EPIC-04:
+    title: "The Production Line"
+    status: backlog
+  EPIC-05:
+    title: "Resilience & Circuit Breaker"
+    status: backlog
+
+artifacts_index:
+  PRD: "factory-os/artifacts/PRD_Agentic_Forge_v2.md"
+  EPICS: "factory-os/backlog/EPICS.md"
+  STORIES: "factory-os/backlog/STORIES.md"
