@@ -27,10 +27,19 @@ work_roster:
         last_agent: Mission Control
   EPIC-02:
     title: "The Discovery Lab"
-    status: backlog
+    status: done
+    stories:
+      STORY-2.1:
+        title: "A2A Handshake Codification"
+        status: done
+        fail_count: 0
+      STORY-2.2:
+        title: "Internet Research Toolset"
+        status: done
+        fail_count: 0
   EPIC-03:
     title: "The Blueprint Engine"
-    status: backlog
+    status: in-progress
   EPIC-04:
     title: "The Production Line"
     status: backlog
