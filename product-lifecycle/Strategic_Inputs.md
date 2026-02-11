@@ -143,3 +143,14 @@ graph LR
 Before you start writing the PRD, ask yourself: **"Which of these five categories am I guessing on?"** 
 
 If you have a gap in *User Evidence*, your PRD will be weak. If you have a gap in *Organizational Capability*, your PRD will be a fantasy. A high-quality PRD is a document that has successfully "De-risked" all five categories before a single line of code is written.
+
+---
+
+## 📚 Industry Parallels & Research
+
+This model of separating **Strategic Discovery** (No-Code + Logic-Touch) from **Tactical Delivery** (Hands-on-Code) is supported by several industry frameworks:
+
+1.  **Dual-Track Agile (Marty Cagan):** Research shows that high-performing teams separate "Discovery" (finding the right product) from "Delivery" (building the product right).
+2.  **Strategic Three Amigos:** An evolution of the standard PM/Dev/QA model that brings **Cloud/Data Architects** into the discovery phase to prevent "Late-Stage Architectural Failures."
+3.  **The Shift-Left Principle:** By moving architectural thinking and analytics design to the "Left" (the brainstorming phase), you significantly reduce the cost of code re-work.
+
