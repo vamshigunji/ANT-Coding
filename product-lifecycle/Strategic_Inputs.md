@@ -70,6 +70,50 @@ mindmap
 *   **A/B Test Archives:** Results from past experiments. Why did Version B fail? 
 *   **Feature ROI:** Which features are being maintained but have near-zero usage? (The "Zombie Features").
 
+## 🧪 Method: High-Fidelity Discovery Track
+
+To turn these raw inputs into a "Product Constitution," we utilize a **High-Fidelity Discovery Track**. This is a dedicated phase where the logic is simulated and de-risked before a single line of code is written by the "Hands-on-Code" developers.
+
+### The Collaborative Brainstorming Model
+
+High-quality information is produced through the friction between two distinct groups:
+
+#### 1. The "No-Code" Group (The Strategic Intent)
+*   **Personas:** Product Manager (PM), UX Designer, Engineering Manager (EM).
+*   **Focus:** Desirability, User Flow, Business Value, and Team Velocity.
+*   **Goal:** Ensure we are building the *right* thing for the *right* people.
+
+#### 2. The "Logic-Touch" Group (The System Integrity)
+*   **Personas:** Software Architects, Solution Architects, Cloud Architects, Analytics Engineers.
+*   **Focus:** Feasibility, Scalability, Data Integrity, and Measurability.
+*   **Goal:** Ensure the product is built on a *solid, scalable, and measurable* foundation.
+
+### 🗺️ The Discovery Workflow
+
+```mermaid
+graph TD
+    subgraph "High-Fidelity Discovery (The Lab)"
+        NC[No-Code Group: PM, UX, EM]
+        LT[Logic-Touch Group: Architects, Analytics]
+        NC <-->|Friction & Brainstorming| LT
+        LT -->|Feasibility Check| NC
+        NC -->|Value Validation| LT
+    end
+
+    subgraph "The Output (The Constitution)"
+        Lab[Discovery Lab] --> PRD[High-Detail PRD]
+        PRD --> Epics[Granular Epics]
+        Epics --> Stories[Validated User Stories]
+    end
+
+    subgraph "The Delivery (The Factory)"
+        Stories --> Devs[Hands-on-Code Developers]
+    end
+
+    style Lab fill:#e1f5fe,stroke:#01579b
+    style PRD fill:#f9f,stroke:#333
+```
+
 ---
 
 ## 🧠 The Synthesis: How to build the SSOT
