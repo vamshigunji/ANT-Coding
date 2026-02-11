@@ -39,6 +39,18 @@ work_roster:
         fail_count: 0
   EPIC-03:
     title: "The Blueprint Engine"
+    status: done
+    stories:
+      STORY-3.1:
+        title: "Artifact Templates"
+        status: done
+        fail_count: 0
+      STORY-3.2:
+        title: "Automated Story Decomposition Logic"
+        status: done
+        fail_count: 0
+  EPIC-04:
+    title: "The Production Line"
     status: in-progress
   EPIC-04:
     title: "The Production Line"
